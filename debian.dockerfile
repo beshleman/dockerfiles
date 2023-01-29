@@ -115,3 +115,14 @@ RUN chown root:root /etc/qemu/root.conf
 RUN chmod 640 /etc/qemu/root.conf
 RUN mkdir -p /usr/local/etc/qemu/
 RUN ln -sf /etc/qemu/bridge.conf /usr/local/etc/qemu/bridge.conf
+
+RUN python3 -m pip install click requests
+
+# Install Linux v6.2-rc5 headers
+RUN wget "https://git.kernel.org/torvalds/t/linux-6.2-rc5.tar.gz" && \
+	tar xvf linux-6.2-rc5.tar.gz && \
+	cd linux-6.2-rc5 && \
+		make headers_install INSTALL_HDR_PATH=/usr && \
+	cd .. && \
+	rm -f linux-6.2-rc5.tar.gz && \
+	rm -Rf linux-6.2-rc5
