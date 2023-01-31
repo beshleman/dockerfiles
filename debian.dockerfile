@@ -130,7 +130,7 @@ RUN wget "https://git.kernel.org/torvalds/t/linux-6.2-rc5.tar.gz" && \
 	cd linux-6.2-rc5 && \
 		make headers_install INSTALL_HDR_PATH=/usr && \
 		cd tools/perf && \
-			make install && \
+			make prefix=/usr/local install && \
 		cd ../.. && \
 	cd .. && \
 	rm -f linux-6.2-rc5.tar.gz && \
