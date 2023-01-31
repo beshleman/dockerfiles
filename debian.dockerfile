@@ -60,6 +60,7 @@ RUN apt-get install -y \
 	software-properties-common \
 	apt-utils
 
+# Do we really need this whole thing just for bpf?
 RUN wget https://apt.llvm.org/llvm.sh && \
 	chmod +x llvm.sh && \
 	sudo ./llvm.sh 15 all && \
