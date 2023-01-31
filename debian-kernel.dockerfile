@@ -29,3 +29,7 @@ RUN apt-get install -y \
 # Generate the initramfs
 RUN apt-get install -y \
 	initramfs-tools
+
+# Install everything we need to build perf tools
+RUN apt-get build-dep -y \
+	linux-perf
