@@ -33,3 +33,18 @@ RUN apt-get install -y \
 # Install everything we need to build perf tools
 RUN apt-get build-dep -y \
 	linux-perf
+
+# Build / install pahole for building eBPF
+RUN apt-get install -y \
+	cmake
+
+RUN mkdir /tmpgit && \
+	cd /tmpgit && \
+	git clone --recurse-submodules git://git.kernel.org/pub/scm/devel/pahole/pahole.git && \
+	cd pahole && \
+	mkdir build && \
+	cd build && \
+	cmake -D__LIB=lib -DBUILD_SHARED_LIBS=OFF .. && \
+	make install && \
+	cd && \
+	rm -R /tmpgit
