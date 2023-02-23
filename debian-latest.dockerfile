@@ -136,3 +136,5 @@ RUN wget "https://git.kernel.org/torvalds/t/linux-6.2-rc5.tar.gz" && \
 	cd .. && \
 	rm -f linux-6.2-rc5.tar.gz && \
 	rm -Rf linux-6.2-rc5
+
+RUN apt-get install -y iproute2
