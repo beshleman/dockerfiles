@@ -37,7 +37,6 @@ RUN apt-get build-dep -y \
 # Build / install pahole for building eBPF
 RUN apt-get install -y \
 	cmake
-
 RUN mkdir /tmpgit && \
 	cd /tmpgit && \
 	git clone --recurse-submodules git://git.kernel.org/pub/scm/devel/pahole/pahole.git && \
