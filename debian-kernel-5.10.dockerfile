@@ -48,3 +48,10 @@ RUN mkdir /tmpgit && \
 	make install && \
 	cd && \
 	rm -R /tmpgit
+
+# Clang for eBPF
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
+	echo 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-16 main' >> /etc/apt/sources.list && \
+	echo 'deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-16 main' >> /etc/apt/sources.list && \
+	apt-get update
+RUN apt-get install -y clang-16 lldb-16 lld-16
