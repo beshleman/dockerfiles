@@ -4,7 +4,7 @@ PROJ := $(CURDIR)
 VERSION ?= latest
 
 .PHONY: all
-all: debian debian-kernel qemu aarch64 uperf
+all: debian debian-kernel qemu aarch64 uperf linaro
 
 %-push: %
 	docker push beshleman/$<:$(VERSION)
@@ -20,4 +20,8 @@ debian-kernel: debian-kernel-$(VERSION).dockerfile
 .PHONY: uperf
 uperf: uperf-$(VERSION).dockerfile
 	docker build -t beshleman/$@-build:$(VERSION) . -f $@-$(VERSION)-build.dockerfile
+	docker build -t beshleman/$@:$(VERSION) . -f $<
+
+.PHONY: linaro
+linaro: linaro-$(VERSION).dockerfile
 	docker build -t beshleman/$@:$(VERSION) . -f $<
