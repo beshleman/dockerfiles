@@ -1,23 +1,30 @@
-FROM debian:bullseye-slim
+FROM ubuntu:20.04
 
-RUN echo 'deb-src http://deb.debian.org/debian bullseye main' >> /etc/apt/sources.list
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -y
-RUN apt-get install -y \
-		build-essential \
-		bc \
-		kmod \
-		cpio \
-		flex \
-		libncurses5-dev \
-		libelf-dev \
-		libssl-dev \
-		dwarves \
-		wget \
-		bison && \
-        apt-get autoremove -y && \
-        apt-get clean && \
-	rm -rf /var/lib/apt/lists* /tmp/* /var/tmp/*
+RUN apt-get update && \
+    apt-get --quiet --yes install \
+        apt-transport-https \
+        bc \
+        build-essential \
+        ca-certificates \
+        check \
+        curl \
+        gcc-multilib \
+        git \
+        libssl-dev \
+        linux-headers-generic \
+        pkg-config \
+        python2.7-dev \
+        python3-pip \
+        python3-virtualenv \
+	libncursesw5-dev \
+        software-properties-common \
+        wget \
+    &&  \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists* /tmp/* /var/tmp/*
 
 RUN mkdir -p /opt/linaro/aarch64
 RUN cd /opt/linaro/aarch64 && \
