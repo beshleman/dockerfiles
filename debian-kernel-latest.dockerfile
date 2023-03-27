@@ -1,8 +1,8 @@
-FROM debian:bullseye
+FROM gcc:12.2.0-bullseye
 
 RUN echo 'deb-src http://deb.debian.org/debian bullseye main' >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get update -y
 RUN apt-get install -y \
 	build-essential \
 	bc \
