@@ -48,3 +48,6 @@ RUN mkdir /tmpgit && \
 	make install && \
 	cd && \
 	rm -R /tmpgit
+
+RUN apt-get install -y \
+	sparse
