@@ -29,3 +29,8 @@ linaro: linaro-$(VERSION).dockerfile
 .PHONY: b4
 b4: b4-$(VERSION).dockerfile
 	docker build -t beshleman/$@:$(VERSION) . -f $<
+
+.PHONY: qemu
+qemu: qemu-$(VERSION).dockerfile
+	docker build -t beshleman/$@-build:$(VERSION) . -f $@-$(VERSION)-build.dockerfile
+	docker build -t beshleman/$@:$(VERSION) . -f $<
