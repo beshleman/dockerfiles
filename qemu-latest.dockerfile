@@ -11,5 +11,3 @@ RUN apt-get update && \
 		libslirp0 && \
 	apt-get clean && \
 	apt-get autoremove
-
-ENTRYPOINT ["qemu-system-x86_64"]
