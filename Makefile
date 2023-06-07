@@ -9,6 +9,9 @@ all: debian debian-kernel qemu aarch64 uperf linaro b4
 %-push: %
 	docker push beshleman/$<:$(VERSION)
 
+all-push: VERSION := latest
+all-push: debian-push debian-kernel-push qemu-push aarch64-push uperf-push linaro-push b4-push
+
 .PHONY: debian
 debian: debian-$(VERSION).dockerfile
 	docker build -t beshleman/$@:$(VERSION) . -f $<
