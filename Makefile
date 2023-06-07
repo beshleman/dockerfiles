@@ -38,6 +38,8 @@ qemu: qemu-$(VERSION).dockerfile
 	docker build -t beshleman/$@-build:$(VERSION) . -f $@-$(VERSION)-build.dockerfile
 	docker build -t beshleman/$@:$(VERSION) . -f $<
 
+other: None
+
 .PHONY: help
 help:
 	@echo "Available containers:"

@@ -1,33 +1,39 @@
 # dockerfiles
 
-This project contains a Dockerfile and a Makefile that can be used for create a build and test environment for the Linux kernel.
-The Dockerfile sets up a development environment with various tools and libraries that are commonly used for kernel development,
-such as gcc, qemu, and pahole.
+This project provides convenient Makefile targets for building various containers.
 
-The Makefile provides commands for building and pushing the Docker images to a container registry.
+## Targets
 
-## Getting Started
+- `all`: Builds all targets: debian, debian-kernel, qemu, aarch64, uperf, linaro, b4.
+- `<target>-push`: Pushes a specific target to the Docker registry.
+- `debian`: Builds the Debian target.
+- `debian-kernel`: Builds the Debian kernel target.
+- `uperf`: Builds the uperf target.
+- `linaro`: Builds the linaro target.
+- `b4`: Builds the b4 target.
+- `qemu`: Builds the qemu target.
 
-To use this project, you will need to have [Docker](https://www.docker.com/) installed on your machine and be logged in to a
-container registry where the images can be pushed.
+## Usage
 
-1. Clone this repository:
+To build a specific target, run the following command:
+
 ```bash
-git clone https://github.com/beshleman/dockerfiles.git
+
+make <target>
 ```
 
-2. Navigate to the folder:
+To build a specific version, run the following command:
+
 ```bash
-cd dockerfiles
+
+VERSION=<version> make <target>
 ```
 
-3. Build and push the Docker image:
+For example, to build the 5.10 debian container:
+
 ```bash
-make
+
+VERSION=5.10 make debian
 ```
 
-This will build the `beshleman/debian:latest` image and push it to a container registry.
-
-Once the image is built and pushed, it can be pulled down and run on any machine with Docker installed.
-
-**Note**: This project is focused on building and testing the Linux kernel, however, you may use the image for other purposes as well.
+The default version for all targets is `latest`.
