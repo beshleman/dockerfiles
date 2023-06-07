@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bullseye-slim
 
 COPY --from=beshleman/qemu-build:latest /usr/local/share/qemu /usr/local/share/qemu
 COPY --from=beshleman/qemu-build:latest \
